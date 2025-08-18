@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-gucrhk&&1e*765v@klef%=k9=pmuoqb3ugb6*y+@$g47(n^y$y'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','127.0.0.1','0.0.0.0', 'n1avto.com', 'www.n1avto.com']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://n1avto.com',
+    'https://www.n1avto.com',
+]
 
 
 # Application definition
@@ -73,11 +79,32 @@ WSGI_APPLICATION = 'n1avto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
+
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': os.getenv('POSTGRES_DB'),
+
+        'USER': os.getenv('POSTGRES_USER'),
+
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+
+        'HOST': os.getenv('POSTGRES_HOST'),
+
+        'PORT': os.getenv('POSTGRES_PORT'),
+
     }
+
 }
 
 
@@ -136,3 +163,100 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
+
+JAZZMIN_SETTINGS = {
+    # Başlıq və Loqo
+    "site_title": "AS-AVTO",
+    "site_header": "İdarə Etmə",
+    "site_brand": "Admin",
+    "site_logo": "images/favicon.png",
+    "site_icon": "images/favicon.png",
+    "login_logo": "images/favicon.png",
+    "login_logo_dark": "images/favicon.png",
+    "site_logo_classes": "img-circle",
+    "welcome_sign": "AS-AVTO Admin Panelinə Xoş Gəldiniz",
+    "copyright": "AS-AVTO © 2024",
+    
+    # Admin panelin rəng sxemi
+    "theme": "default",
+    
+    # Sidebar menyu
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "hide_apps": [],
+    "hide_models": [],
+    "order_with_respect_to": ["auth", "home"],
+    
+    # İstifadəçi interfeysi
+    "user_avatar": None,
+    
+    # Form formatı
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {
+        "auth.user": "collapsible",
+        "auth.group": "vertical_tabs",
+    },
+    
+ 
+    
+    # İkonlar
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "home.Firma": "fas fa-industry icon",
+        "home.Kateqoriya": "fa-solid fa-list-check",
+        "home.Avtomobil": "fa-solid fa-car",
+        "home.Mehsul": "fa-solid fa-boxes-stacked",
+        "home.Sifaris": "fa-solid fa-clipboard-list",
+        "home.Vitrin": "fa-solid fa-list",
+        "home.PopupImage": "fa-solid fa-image",
+        "home.Profile": "fa-regular fa-circle-user",
+        "home.Header_Message": "fa-solid fa-comment",
+        "home.ProductLike": "fa-solid fa-thumbs-up",
+        "home.ProductRating": "fa-solid fa-star-half-stroke",
+    },
+    
+    # Related Modal
+    "related_modal_active": False,
+    
+    # Custom CSS/JS
+    "custom_css": None,
+    "custom_js": None,
+    
+    # Show/Hide UI Sections
+    "show_ui_builder": True
+}
+
+# 4. Admin interfeysi üçün əlavə tənzimləmələr
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-success",
+    "accent": "accent-primary",
+    "navbar": "navbar-dark",
+    "no_navbar_border": False,
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-primary",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": True,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": False,
+    "theme": "default",
+    "dark_mode_theme": "darkly",
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success"
+    }
+}
