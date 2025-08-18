@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N1 Avto</title>
+    <link rel="icon" type="image/jpeg" href="{% static 'img/logo.jpeg' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'img/logo.jpeg' %}" alt="N1 Avto" style="height: 40px; width: auto;">
+        </div>
+        <div class="contact">📞 +994 77 305 95 85</div>
+    </header>
+
+    <main>
+        <!-- Reklam Carousel -->
+        {% if reklamlar %}
+        <div class="reklam-carousel">
+            <div class="reklam-container">
+                {% for reklam in reklamlar %}
+                <div class="reklam-card">
+                    <img src="{{ reklam.foto.url }}" alt="{{ reklam.adi }}" class="reklam-image">
+                    <div class="reklam-overlay">
+                        <h3>{{ reklam.adi }}</h3>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-btn prev-btn" onclick="slideReklam('prev')">❮</button>
+            <button class="carousel-btn next-btn" onclick="slideReklam('next')">❯</button>
+            <div class="carousel-dots">
+                {% for reklam in reklamlar %}
+                <span class="dot" onclick="goToSlide({{ forloop.counter0 }})"></span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <form id="searchForm" class="search-form">
+            <input type="text" name="q" id="searchInput" placeholder="Axtarış..." value="{{ query }}">
+            <button type="submit">
+                <div class="spinner" style="display: none;"></div>
+                <span>Axtar</span>
+            </button>
+        </form>
+
+        <table id="resultsTable" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Şəkil</th>
+                    <th>Adi</th>
+                    <th>Firma</th>
+                    <th>Kod</th>
+                    <th>Qiymət</th>
+                    <th>Stok</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <div id="loadMoreContainer" class="load-more-container" style="display:none;">
+            <button id="loadMoreBtn" class="load-more-btn">Daha Çox Göstər</button>
+        </div>
+
+        <p id="noResults" style="text-align:center; margin-top:20px; display:none;">
+            Heç bir məhsul tapılmadı.
+        </p>
+    </main>
+
+    <script src="{% static 'js/base.js' %}"></script>
+    
+    <!-- Reklam Carousel JavaScript -->
+    <script>
+        let currentSlide = 0;
+        const reklamCards = document.querySelectorAll('.reklam-card');
+        const dots = document.querySelectorAll('.dot');
+        
+        function showSlide(n) {
+            currentSlide = n;
+            const container = document.querySelector('.reklam-container');
+            const slideWidth = reklamCards[0].offsetWidth + 20; // 20px gap
+            container.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        function slideReklam(direction) {
+            if (direction === 'next') {
+                currentSlide = (currentSlide + 1) % reklamCards.length;
+            } else {
+                currentSlide = (currentSlide - 1 + reklamCards.length) % reklamCards.length;
+            }
+            showSlide(currentSlide);
+        }
+        
+        function goToSlide(n) {
+            showSlide(n);
+        }
+        
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            slideReklam('next');
+        }, 5000);
+        
+        // Initialize first slide
+        if (dots.length > 0) {
+            dots[0].classList.add('active');
+        }
+    </script>
+</body>
+</html>
