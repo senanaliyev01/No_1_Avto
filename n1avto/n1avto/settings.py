@@ -39,6 +39,7 @@ CSRF_TRUSTED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -168,16 +169,16 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
 JAZZMIN_SETTINGS = {
     # Başlıq və Loqo
-    "site_title": "AS-AVTO",
+    "site_title": "N1 Avto",
     "site_header": "İdarə Etmə",
     "site_brand": "Admin",
-    "site_logo": "images/favicon.png",
-    "site_icon": "images/favicon.png",
-    "login_logo": "images/favicon.png",
-    "login_logo_dark": "images/favicon.png",
+    "site_logo": "img/logo.jpeg",
+    "site_icon": "img/logo.jpeg",
+    "login_logo": "img/logo.jpeg",
+    "login_logo_dark": "img/logo.jpeg",
     "site_logo_classes": "img-circle",
-    "welcome_sign": "AS-AVTO Admin Panelinə Xoş Gəldiniz",
-    "copyright": "AS-AVTO © 2024",
+    "welcome_sign": "N1 Avto Admin Panelinə Xoş Gəldiniz",
+    "copyright": "N1 Avto © 2025",
     
     # Admin panelin rəng sxemi
     "theme": "default",
@@ -207,16 +208,7 @@ JAZZMIN_SETTINGS = {
         "auth.user": "fas fa-user",
         "auth.Group": "fas fa-users",
         "home.Firma": "fas fa-industry icon",
-        "home.Kateqoriya": "fa-solid fa-list-check",
-        "home.Avtomobil": "fa-solid fa-car",
         "home.Mehsul": "fa-solid fa-boxes-stacked",
-        "home.Sifaris": "fa-solid fa-clipboard-list",
-        "home.Vitrin": "fa-solid fa-list",
-        "home.PopupImage": "fa-solid fa-image",
-        "home.Profile": "fa-regular fa-circle-user",
-        "home.Header_Message": "fa-solid fa-comment",
-        "home.ProductLike": "fa-solid fa-thumbs-up",
-        "home.ProductRating": "fa-solid fa-star-half-stroke",
     },
     
     # Related Modal
