@@ -1,0 +1,34 @@
+# Virtual Environment
+env/
+venv/
+
+# Environment Variables
+.env
+
+# Migrations (Amma əsas `__init__.py` faylını saxlamalısan)
+**/migrations/*.pyc
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# Database
+*.sqlite3
+*.db
+
+# Compiled Python Files
+*.pyc
+*.pyo
+__pycache__/
+
+# Logs
+logs/
+*.log
+
+# Django Static & Media Files
+staticfiles/
+media/
+
+# IDE və sistem faylları
+.vscode/
+.idea/
+.DS_Store
+*.swp

@@ -26,6 +26,12 @@ class Mehsul(models.Model):
     def __str__(self):
         return f'{self.adi} - {self.kod}'
 
+    def save(self, *args, **kwargs):
+        if self.kodlar:
+            # Yalnız hərf, rəqəm və boşluq saxla
+            self.kodlar = re.sub(r'[^a-zA-Z0-9 ]', '', self.kodlar)
+        super().save(*args, **kwargs)
+
 
 
 
