@@ -13,6 +13,7 @@ from functools import reduce
 from operator import and_, or_
 from django.db.models import Q, Value, CharField
 from django.db.models.functions import Concat
+import re
 
 try:
     import pandas as pd
