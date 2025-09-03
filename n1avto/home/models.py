@@ -21,8 +21,8 @@ class Mehsul(models.Model):
     stok = models.IntegerField()
 
     class Meta:
-        verbose_name = 'Mehsul'
-        verbose_name_plural = 'Mehsullar'
+        verbose_name = 'Məhsul'
+        verbose_name_plural = 'Məhsullar'
     
     def __str__(self):
         return f'{self.adi} - {self.kod}'
