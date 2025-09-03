@@ -209,6 +209,7 @@ JAZZMIN_SETTINGS = {
         "auth.Group": "fas fa-users",
         "home.Firma": "fas fa-industry icon",
         "home.Mehsul": "fa-solid fa-boxes-stacked",
+        "home.Reklam": "fa-solid fa-ad",
     },
     
     # Related Modal

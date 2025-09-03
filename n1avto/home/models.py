@@ -40,3 +40,10 @@ class Reklam(models.Model):
     adi = models.CharField(max_length=100)
     foto = models.ImageField(upload_to='reklam_sekilleri')
 
+    class Meta:
+        verbose_name = 'Reklam'
+        verbose_name_plural = 'Reklamlar'
+    
+    def __str__(self):
+        return f'{self.adi}'
+
