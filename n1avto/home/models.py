@@ -1,4 +1,5 @@
 from django.db import models
+import re
 
 class Firma(models.Model):
     adi = models.CharField(max_length=100)
